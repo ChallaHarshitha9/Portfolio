@@ -1,3 +1,4 @@
+/* Universal Styles and Root Variables */
 * {
   margin: 0;
   padding: 0;
@@ -23,7 +24,7 @@ body {
 
 /* Header Styles */
 header {
-  background-color: #8f5fd7;
+  background-color: var(--primary-color);
   color: #fff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   margin: 0;
@@ -37,14 +38,46 @@ header {
   z-index: 1000;
 }
 
-/* Section Styles */
-.hero, .projects-section, .about-section, .contact-section {
+/* Updated Section Styles */
+.hero,
+.projects-section,
+.about-section,
+.contact-section {
   background-color: transparent;
   margin: 2rem auto;
   max-width: 1400px;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   border: 2.5px solid #a18cd1;
+  padding: 8rem 10vw;
+}
+
+/* Responsive Padding for Sections */
+@media (max-width: 1200px) {
+  .hero,
+  .about-section,
+  .projects-section,
+  .contact-section {
+    padding: 6rem 8vw;
+  }
+}
+
+@media (max-width: 800px) {
+  .hero,
+  .about-section,
+  .projects-section,
+  .contact-section {
+    padding: 5rem 6vw;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero,
+  .about-section,
+  .projects-section,
+  .contact-section {
+    padding: 4rem 5vw;
+  }
 }
 
 /* Project Cards */
@@ -92,13 +125,34 @@ html {
   text-decoration: none;
 }
 
+/* === Corrected Nav Menu & Toggle for All Screens === */
+.nav-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Hide hamburger by default */
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Desktop nav links */
 .nav-links {
   list-style: none;
   display: flex;
   gap: 2rem;
   margin: 0;
 }
-
+.nav-links li {
+  display: flex;
+  align-items: center;
+}
 .nav-links li a {
   text-decoration: none;
   color: #fff;
@@ -106,33 +160,113 @@ html {
   transition: var(--transition);
   font-size: 1.1rem;
 }
-
 .nav-links li a:hover {
   color: #e0e7ff;
 }
 
-.hamburger {
-  display: none;
-  font-size: 28px;
-  color: white;
+/* Theme toggle button styling */
+#theme-toggle {
+  position: static;
+  margin-left: 1rem;
+  background: #fff;
+  color: var(--primary-color);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  padding: 0.4rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: background 0.3s, color 0.3s;
+  visibility: visible;
+  opacity: 1;
 }
+
+/* Mobile styles for navigation and toggle */
+@media (max-width: 768px) {
+  header {
+    padding: 1rem 2rem;
+  }
+  .nav-bar {
+    gap: 0.5rem;
+  }
+  
+  .nav-links {
+    display: none; /* Hide by default on mobile */
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    background: var(--primary-color);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    z-index: 2000;
+    padding: 1rem 0;
+    text-align: center;
+    border-radius: 0 0 12px 12px;
+  }
+  .nav-links.active {
+    display: flex; /* Show when active class is added */
+  }
+  .nav-links li {
+    padding: 0.7rem 0;
+    width: 100%; /* Ensure links take full width of the menu */
+  }
+  .nav-links li a {
+    text-align: center;
+  }
+
+  .hamburger {
+    display: block; /* Show hamburger icon on mobile */
+    color: #fff;
+  }
+
+  #theme-toggle {
+    margin-left: 0.5rem;
+    position: static; /* Adjusting position to fit in the header */
+  }
+  
+  /* Specific fix for hero section alignment on small screens */
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+  }
+  .hero-text {
+    text-align: center;
+    margin: 0 auto;
+  }
+  .hero-buttons,
+  .social-icons {
+    justify-content: center;
+    margin: 1rem auto;
+  }
+  .hero-image {
+    margin: 0 auto;
+  }
+}
+/* === END of Corrected Nav Menu & Toggle === */
 
 /* Hero Section */
 .hero {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  gap: 3rem;
   min-height: 100vh;
-  padding: 0 5rem 0 2mm;
   margin-top: 0;
   background: #101820;
 }
 
 .hero-text {
-  max-width: 600px;
-  margin-right: 2rem;
-  margin-left: 29mm;
+  flex: 1 1 300px;
+  min-width: 250px;
+  text-align: left;
 }
 
 .hero-text .intro {
@@ -247,14 +381,14 @@ html {
 /* ========== ABOUT SECTION ========== */
 .about-section {
   padding: 60px 50px;
- /* background-color: #121212;*/
- background-color: transparent;
+  background-color: transparent;
   color: #fff;
 }
 
-#about{
-  scroll-margin-top:100px;
+#about {
+  scroll-margin-top: 100px;
 }
+
 .about-container {
   display: flex;
   align-items: flex-start;
@@ -286,7 +420,7 @@ html {
 .about-text h1 {
   font-size: 2.5rem;
   margin-bottom: 15px;
-  color: #8f5fd7;
+  color: var(--primary-color);
   font-weight: bold;
 }
 
@@ -299,6 +433,30 @@ html {
   line-height: 1.6;
   margin-bottom: 15px;
   color: #ccc;
+}
+
+/* Fix About Section image alignment on small screens */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .about-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  .about-image img {
+    max-width: 80vw;
+    height: auto;
+    margin: 0 auto;
+  }
+  .about-text {
+    width: 100%;
+    padding-left: 0;
+  }
 }
 
 /* ========== PROJECT SECTION ========== */
@@ -403,7 +561,7 @@ html {
 }
 
 .tech-tag {
-  background-color: #8f5fd7;
+  background-color: var(--primary-color);
   color: #fff;
   padding: 0.5rem 1rem;
   border-radius: 20px;
@@ -430,12 +588,11 @@ html {
 .contact-section {
   padding: 4rem 2rem;
   text-align: center;
-  /* background-color: #f9f9f9; */
 }
 
 .contact-section h1 {
   margin-bottom: 1.5rem;
-  color: #8f5fd7;
+  color: var(--primary-color);
   font-weight: bold;
 }
 
@@ -472,145 +629,53 @@ html {
   margin-right: 0.5rem;
 }
 
-/* ========== RESPONSIVE NAVIGATION ========== */
-@media (max-width: 1024px) {
-  .hero {
-    padding: 0 2rem;
-    flex-direction: column;
-    text-align: center;
-    padding-top: 5rem;
-  }
-
-  .hero-text {
-    margin-right: 0;
-    margin-bottom: 3rem;
-  }
-
-  .hero-buttons {
-    justify-content: center;
-  }
-
-  .social-icons {
-    justify-content: center;
-  }
-
-  .image-wrapper {
-    width: 300px;
-    height: 300px;
-  }
-}
-
-@media (max-width: 768px) {
-  header {
-    padding: 1rem 2rem;
-  }
-
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: var(--background);
-    flex-direction: column;
-    gap: 0;
-    padding: 1rem;
-    border-radius: 0 0 10px 10px;
-    width: 200px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .nav-links li {
-    width: 100%;
-    text-align: center;
-    padding: 0.5rem 0;
-  }
-
-  .hamburger {
-    display: block;
-  }
-
-  .hero-text h1 {
-    font-size: 2.5rem;
-  }
-
-  .image-wrapper {
-    width: 250px;
-    height: 250px;
-  }
-
-  .about-container {
-    flex-direction: column;
-    padding: 0;
-    text-align: center;
-  }
-
-  .about-text {
-    padding-left: 0;
-  }
-
-  .projects-section {
-    padding: 4rem 2rem;
-  }
-
-  .projects-container {
-    grid-template-columns: 1fr;
-  }
-
-  .project-image {
-    height: 200px;
-  }
-}
-
 /* Smoother reveal animation */
-.hero, .about-section, .projects-section, .contact-section {
+.hero,
+.about-section,
+.projects-section,
+.contact-section {
   opacity: 0;
   transform: translateY(40px) scale(0.98);
   filter: blur(4px);
   transition: opacity 1.2s cubic-bezier(.25, .8, .25, 1), transform 1.2s cubic-bezier(.25, .8, .25, 1), filter 1.2s cubic-bezier(.25, .8, .25, 1);
 }
-.hero.revealed, .about-section.revealed, .projects-section.revealed, .contact-section.revealed {
+
+.hero.revealed,
+.about-section.revealed,
+.projects-section.revealed,
+.contact-section.revealed {
   opacity: 1;
   transform: none;
   filter: none;
 }
 
-/* Theme toggle for inline placement */
-#theme-toggle {
-  position: absolute;
-  top: 16px;
-  right: -60px;
-  z-index: 3000;
-  background: #fff;
-  color: #8f5fd7;
-  border: none;
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-  transition: background 0.3s, color 0.3s;
-}
-#theme-toggle:hover {
-  background: #8f5fd7;
-  color: #fff;
-}
-@media (max-width: 1500px) {
-  #theme-toggle {
-    right: -30px;
+/* Adjust theme toggle for very small screens */
+@media (max-width: 500px) {
+  .hero-text,
+  .hero-image {
+    margin-left: 1mm;
+    margin-right: 0;
   }
-}
-@media (max-width: 1000px) {
-  #theme-toggle {
-    right: 10px;
-    top: 10px;
+  .hero {
+    padding: 1rem 0.2rem 0.2rem 0.2rem;
+    background: #101820;
+  }
+  body.light-mode .hero {
+    background: #fff;
+  }
+  header {
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  }
+  
+  .hero-text {
+    text-align: center;
+  }
+  
+  .hero-buttons,
+  .social-icons {
+    justify-content: center;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
@@ -619,13 +684,13 @@ html {
   bottom: 2.5rem;
   right: 2.5rem;
   z-index: 2000;
-  background: #8f5fd7;
+  background: var(--primary-color);
   color: #fff;
   border: none;
   border-radius: 50%;
   width: 44px;
   height: 44px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   cursor: pointer;
   display: none;
   align-items: center;
@@ -633,6 +698,7 @@ html {
   font-size: 1.3rem;
   transition: background 0.3s, color 0.3s;
 }
+
 #scrollTopBtn:hover {
   background: #6c3fc5;
 }
@@ -642,9 +708,11 @@ body.light-mode {
   background: #fff;
   color: #222;
 }
+
 body.light-mode .hero {
   background: #fff;
 }
+
 body.light-mode .hero-text,
 body.light-mode .about-text,
 body.light-mode .about-text h1,
@@ -660,43 +728,53 @@ body.light-mode .nav-links li a,
 body.light-mode .logo {
   color: #111 !important;
 }
+
 body.light-mode .btn.primary {
-  background: #8f5fd7;
+  background: var(--primary-color);
   color: #fff;
 }
+
 body.light-mode .btn.primary:hover {
   background: #6c3fc5;
   color: #fff;
 }
+
 body.light-mode .btn.secondary:hover {
-  background: #8f5fd7;
+  background: var(--primary-color);
   color: #fff;
-  border-color: #8f5fd7;
+  border-color: var(--primary-color);
 }
+
 body.light-mode .tech-tag {
-  background: #8f5fd7;
+  background: var(--primary-color);
   color: #fff;
 }
+
 body.light-mode .hero-text,
 body.light-mode .hero-text h1,
 body.light-mode .hero-text .intro,
 body.light-mode .highlight {
   color: #111 !important;
 }
+
 body.light-mode .hero-description,
 body.light-mode .hero-buttons a {
   color: #111 !important;
 }
+
 body.light-mode .social-icons a {
   color: #111 !important;
 }
+
 body.light-mode .social-icons a:hover {
   color: #333 !important;
 }
+
 body.light-mode .hero-text .highlight,
 body.light-mode .hero-text .intro {
-  color: #8f5fd7 !important;
+  color: var(--primary-color) !important;
 }
+
 body.light-mode .section-description {
   color: #111 !important;
 }
@@ -705,66 +783,4 @@ body.light-mode .section-description {
   position: relative;
   max-width: 1400px;
   margin: 0 auto;
-}
-
-@media (max-width: 1200px) {
-  header {
-    padding: 1.5rem 4rem 1.5rem 2rem;
-  }
-}
-@media (max-width: 800px) {
-  .main-container {
-    max-width: 100%;
-    padding: 0 0.5rem;
-  }
-  header {
-    padding: 1rem 1rem 1rem 1rem;
-  }
-  .hero {
-    flex-direction: column;
-    padding: 2rem 0.5rem 0.5rem 0.5rem;
-    min-height: unset;
-    text-align: center;
-    background: #101820;
-  }
-  body.light-mode .hero {
-    background: #fff;
-  }
-  .hero-text {
-    margin-left: 4mm;
-    margin-right: 0;
-    margin-bottom: 2rem;
-  }
-  .hero-image {
-    margin-left: 4mm;
-    margin-bottom: 2rem;
-  }
-  #theme-toggle {
-    right: 10px;
-    top: 10px;
-  }
-}
-@media (max-width: 500px) {
-  .hero-text, .hero-image {
-    margin-left: 1mm;
-    margin-right: 0;
-  }
-  .hero {
-    padding: 1rem 0.2rem 0.2rem 0.2rem;
-    background: #101820;
-  }
-  body.light-mode .hero {
-    background: #fff;
-  }
-  header {
-    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-  }
-}
-
-body.light-mode .hero-text h1 {
-  color: #111 !important;
-}
-body.light-mode .hero-text .highlight,
-body.light-mode .hero-text .intro {
-  color: #8f5fd7 !important;
 }
